@@ -56,11 +56,11 @@ body{{font-family:Arial,Helvetica,sans-serif;background:#fff;color:#333;min-heig
 .counts .b{{color:#0d6efd}} .counts .g{{color:#d63384}}
 #grid{{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;width:min(1050px,95vw);transition:opacity .5s}}
 .card{{border-radius:12px;padding:20px 12px;text-align:center;box-shadow:0 6px 20px rgba(0,0,0,.1);min-height:140px;display:flex;flex-direction:column;justify-content:center}}
-.card.boy{{background:#e7f3ff;border:3px solid #0d6efd}}
-.card.girl{{background:#fce4f0;border:3px solid #d63384}}
+.card.boy{{background:#d9ecff;border:3px solid #7cc0ff}}
+.card.girl{{background:#ffe0ec;border:3px solid #ff9ec7}}
 .card .names{{font-size:19px;font-weight:bold;margin-bottom:6px}}
 .card .label{{font-size:16px;font-weight:bold}}
-.card.boy .label{{color:#0d6efd}} .card.girl .label{{color:#d63384}}
+.card.boy .label{{color:#4a9fe0}} .card.girl .label{{color:#e86a9e}}
 .card .date{{color:#999;font-size:14px;margin-top:8px}}
 #counter{{color:#aaa;font-size:14px;margin-top:20px}}
 .footer{{color:#999;font-size:13px;margin-top:12px}}
