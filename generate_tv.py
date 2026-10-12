@@ -52,7 +52,8 @@ body{{font-family:Arial,Helvetica,sans-serif;background:#fff;color:#333;min-heig
 .header img{{height:90px}}
 .header h1{{color:#d63384;font-size:36px;text-align:center}}
 .header p{{color:#666;font-size:16px;text-align:center;margin-top:6px}}
-.counts{{font-size:22px;font-weight:bold;margin-bottom:20px;color:#d63384}}
+.counts{{font-size:22px;font-weight:bold;margin-bottom:20px}}
+.counts .b{{color:#4a9fe0}} .counts .g{{color:#e86a9e}}
 #grid{{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;width:min(1050px,95vw);transition:opacity .5s}}
 .card{{border-radius:12px;padding:20px 12px;text-align:center;box-shadow:0 6px 20px rgba(0,0,0,.1);min-height:140px;display:flex;flex-direction:column;justify-content:center}}
 .card.boy{{background:#d9ecff;border:3px solid #7cc0ff}}
@@ -71,7 +72,7 @@ body{{font-family:Arial,Helvetica,sans-serif;background:#fff;color:#333;min-heig
 <div><h1>Baby Central Babies</h1><p>Celebrating the newest arrivals from our Baby Central family.<br>Mazel Tov to all the proud parents!</p></div>
 <img src="{BOTTLE_URL}" alt="Baby bottle">
 </div>
-<div class="counts">&hearts; {boys} Boys &nbsp;|&nbsp; &hearts; {girls} Girls</div>
+<div class="counts"><span class="b">&hearts; {boys} Boys</span> &nbsp;|&nbsp; <span class="g">&hearts; {girls} Girls</span></div>
 <div id="grid"></div>
 <div id="counter"></div>
 <div class="footer">Showing the {len(recent)} most recent of {len(all_births)} total arrivals &bull; Updated daily</div>
