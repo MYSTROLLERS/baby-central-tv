@@ -47,22 +47,23 @@ def main():
 <title>Baby Central Babies</title>
 <style>
 *{{margin:0;padding:0;box-sizing:border-box}}
-body{{font-family:Arial,Helvetica,sans-serif;background:#fff;color:#333;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:30px 20px}}
-.header{{display:flex;align-items:center;justify-content:center;gap:30px;margin-bottom:20px}}
-.header img{{height:110px}}
-.header h1{{color:#d63384;font-size:42px;text-align:center}}
-.header p{{color:#666;font-size:18px;text-align:center;margin-top:8px}}
-.counts{{font-size:24px;font-weight:bold;margin-bottom:25px}}
+body{{font-family:Arial,Helvetica,sans-serif;background:#fff;color:#333;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:25px 20px}}
+.header{{display:flex;align-items:center;justify-content:center;gap:30px;margin-bottom:15px}}
+.header img{{height:90px}}
+.header h1{{color:#d63384;font-size:36px;text-align:center}}
+.header p{{color:#666;font-size:16px;text-align:center;margin-top:6px}}
+.counts{{font-size:22px;font-weight:bold;margin-bottom:20px}}
 .counts .b{{color:#0d6efd}} .counts .g{{color:#d63384}}
-#card{{width:min(600px,90vw);border-radius:16px;padding:50px 30px;text-align:center;box-shadow:0 8px 30px rgba(0,0,0,.12);transition:opacity .5s;min-height:280px;display:flex;flex-direction:column;justify-content:center}}
-#card.boy{{background:#e7f3ff;border:3px solid #0d6efd}}
-#card.girl{{background:#fce4f0;border:3px solid #d63384}}
-#names{{font-size:34px;font-weight:bold;margin-bottom:15px}}
-#label{{font-size:28px;font-weight:bold}}
-#card.boy #label{{color:#0d6efd}} #card.girl #label{{color:#d63384}}
-#date{{color:#999;font-size:18px;margin-top:12px}}
-#counter{{color:#aaa;font-size:14px;margin-top:25px}}
-.footer{{color:#999;font-size:14px;margin-top:20px}}
+#grid{{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;width:min(1000px,95vw);transition:opacity .5s}}
+.card{{border-radius:14px;padding:25px 15px;text-align:center;box-shadow:0 6px 20px rgba(0,0,0,.1);min-height:160px;display:flex;flex-direction:column;justify-content:center}}
+.card.boy{{background:#e7f3ff;border:3px solid #0d6efd}}
+.card.girl{{background:#fce4f0;border:3px solid #d63384}}
+.card .names{{font-size:22px;font-weight:bold;margin-bottom:8px}}
+.card .label{{font-size:19px;font-weight:bold}}
+.card.boy .label{{color:#0d6efd}} .card.girl .label{{color:#d63384}}
+.card .date{{color:#999;font-size:14px;margin-top:8px}}
+#counter{{color:#aaa;font-size:14px;margin-top:20px}}
+.footer{{color:#999;font-size:13px;margin-top:12px}}
 </style>
 </head>
 <body>
@@ -72,27 +73,30 @@ body{{font-family:Arial,Helvetica,sans-serif;background:#fff;color:#333;min-heig
 <img src="{BOTTLE_URL}" alt="Baby bottle">
 </div>
 <div class="counts"><span class="b">&hearts; {boys} Boys</span> &nbsp;|&nbsp; <span class="g">&hearts; {girls} Girls</span></div>
-<div id="card" class="boy"><div id="names"></div><div id="label"></div><div id="date"></div></div>
+<div id="grid"></div>
 <div id="counter"></div>
 <div class="footer">Showing the {len(recent)} most recent of {len(all_births)} total arrivals &bull; Updated daily</div>
 <script>
 var births=[{js_data}];
-var i=0;
+var PER_PAGE=6;
+var page=0;
+var pages=Math.ceil(births.length/PER_PAGE);
 function show(){{
-  var b=births[i];
-  var c=document.getElementById('card');
-  c.style.opacity=0;
+  var g=document.getElementById('grid');
+  g.style.opacity=0;
   setTimeout(function(){{
-    document.getElementById('names').textContent=b.names;
-    document.getElementById('label').textContent=b.label;
-    document.getElementById('date').textContent=b.date;
-    c.className=b.boy?'boy':'girl';
-    document.getElementById('counter').textContent=(i+1)+' of '+births.length;
-    c.style.opacity=1;
+    var html='';
+    for(var k=0;k<PER_PAGE;k++){{
+      var b=births[(page*PER_PAGE+k)%births.length];
+      html+='<div class="card '+(b.boy?'boy':'girl')+'"><div class="names">'+b.names+'</div><div class="label">'+b.label+'</div><div class="date">'+b.date+'</div></div>';
+    }}
+    g.innerHTML=html;
+    document.getElementById('counter').textContent='Page '+(page+1)+' of '+pages;
+    g.style.opacity=1;
   }},400);
-  i=(i+1)%births.length;
+  page=(page+1)%pages;
 }}
-show();setInterval(show,5000);
+show();setInterval(show,8000);
 </script>
 </body>
 </html>"""
