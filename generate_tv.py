@@ -22,18 +22,19 @@ def main():
     boys = sum(1 for b in all_births if b['gender'] == 'Boy')
     girls = sum(1 for b in all_births if b['gender'] in ('Girl', 'Twin Girls'))
 
-    # Build JS data array
+    # Build JS data array - use double quotes for JS strings, escape properly
     js_items = []
     for b in recent:
-        names = b['names'].replace('\\', '\\\\').replace("'", "\\'").replace('&amp;', '&')
+        names = b['names'].replace('\\', '\\\\').replace('"', '\\"').replace('&amp;', '&')
         date_str = ''
         if b['date']:
             y, m, d = b['date'].split('-')
             date_str = f"{int(m)}/{int(d)}/{y}"
         is_boy = b['gender'] == 'Boy'
         label = "It's a Boy!" if is_boy else ("Twin Girls!" if b['gender'] == 'Twin Girls' else "It's a Girl!")
+        label = label.replace("'", "\\'")
         js_items.append(
-            f"{{names:'{names}',label:'{label}',date:'{date_str}',boy:{str(is_boy).lower()}}}"
+            f'{{names:"{names}",label:"{label}",date:"{date_str}",boy:{str(is_boy).lower()}}}'
         )
     js_data = ",\n".join(js_items)
 
