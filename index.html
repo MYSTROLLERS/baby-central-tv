@@ -2,11 +2,106 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Baby Central TV</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="refresh" content="86400">
+<title>Baby Central Babies</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,Helvetica,sans-serif;background:#fff;color:#333;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:30px 20px}
+.header{display:flex;align-items:center;justify-content:center;gap:30px;margin-bottom:20px}
+.header img{height:110px}
+.header h1{color:#d63384;font-size:42px;text-align:center}
+.header p{color:#666;font-size:18px;text-align:center;margin-top:8px}
+.counts{font-size:24px;font-weight:bold;margin-bottom:25px}
+.counts .b{color:#0d6efd} .counts .g{color:#d63384}
+#card{width:min(600px,90vw);border-radius:16px;padding:50px 30px;text-align:center;box-shadow:0 8px 30px rgba(0,0,0,.12);transition:opacity .5s;min-height:280px;display:flex;flex-direction:column;justify-content:center}
+#card.boy{background:#e7f3ff;border:3px solid #0d6efd}
+#card.girl{background:#fce4f0;border:3px solid #d63384}
+#names{font-size:34px;font-weight:bold;margin-bottom:15px}
+#label{font-size:28px;font-weight:bold}
+#card.boy #label{color:#0d6efd} #card.girl #label{color:#d63384}
+#date{color:#999;font-size:18px;margin-top:12px}
+#counter{color:#aaa;font-size:14px;margin-top:25px}
+.footer{color:#999;font-size:14px;margin-top:20px}
+</style>
 </head>
 <body>
-<h1>Baby Central TV</h1>
-<p>Birth announcements display - coming soon.</p>
+<div class="header">
+<img src="https://cdn.shoplightspeed.com/shops/608968/files/77911785/img-7206.jpg" alt="Baby crib">
+<div><h1>Baby Central Babies</h1><p>Celebrating the newest arrivals from our Baby Central family.<br>Mazel Tov to all the proud parents!</p></div>
+<img src="https://cdn.shoplightspeed.com/shops/608968/files/77911789/img-7207.jpg" alt="Baby bottle">
+</div>
+<div class="counts"><span class="b">&hearts; 556 Boys</span> &nbsp;|&nbsp; <span class="g">&hearts; 547 Girls</span></div>
+<div id="card" class="boy"><div id="names"></div><div id="label"></div><div id="date"></div></div>
+<div id="counter"></div>
+<div class="footer">Showing the 50 most recent of 1103 total arrivals &bull; Updated daily</div>
+<script>
+var births=[{names:'Sara And Joe Gindi',label:'It's a Boy!',date:'10/9/2026',boy:true},
+{names:'Claudette And Sol Setton',label:'It's a Girl!',date:'10/8/2026',boy:false},
+{names:'Raquel & Jack Alboucai',label:'It's a Girl!',date:'10/8/2026',boy:false},
+{names:'Linda And Eddie Lincer',label:'It's a Girl!',date:'10/6/2026',boy:false},
+{names:'Norean And Jack Mizrahi',label:'It's a Girl!',date:'10/6/2026',boy:false},
+{names:'Jenny And Joey Levy',label:'It's a Boy!',date:'10/4/2026',boy:true},
+{names:'Reina And Eddie Levy',label:'It's a Girl!',date:'9/29/2026',boy:false},
+{names:'Caroll And Ovadia Sutton',label:'It's a Boy!',date:'9/29/2026',boy:true},
+{names:'Lauren And Nathan Zalta',label:'It's a Girl!',date:'9/29/2026',boy:false},
+{names:'Jasmin And Gabe Abadi',label:'It's a Girl!',date:'9/29/2026',boy:false},
+{names:'Esther And Elliot Rishty',label:'It's a Boy!',date:'9/28/2026',boy:true},
+{names:'Bobbi And Eli Cattan',label:'It's a Boy!',date:'9/28/2026',boy:true},
+{names:'Jaclyn And Jack Hanan',label:'It's a Boy!',date:'9/28/2026',boy:true},
+{names:'Sapir And Stanley Cayre',label:'It's a Boy!',date:'9/25/2026',boy:true},
+{names:'Corinne And Sam Beda',label:'It's a Boy!',date:'9/24/2026',boy:true},
+{names:'Viviane And Joey Cohen',label:'It's a Boy!',date:'9/23/2026',boy:true},
+{names:'Orly And Joe Mamrout',label:'It's a Boy!',date:'9/22/2026',boy:true},
+{names:'Lorraine And David Haddad',label:'It's a Boy!',date:'9/22/2026',boy:true},
+{names:'Rachel And Allie Haber',label:'It's a Boy!',date:'9/20/2026',boy:true},
+{names:'Emily And Noah Ohayon',label:'It's a Girl!',date:'9/20/2026',boy:false},
+{names:'Danielle And Tsvi Vilinsky',label:'It's a Boy!',date:'9/20/2026',boy:true},
+{names:'Rachel And Louis Shalam',label:'It's a Boy!',date:'9/18/2026',boy:true},
+{names:'Eve And Jack Bibi',label:'It's a Girl!',date:'9/18/2026',boy:false},
+{names:'Erica And Irving Fallas',label:'It's a Boy!',date:'9/17/2026',boy:true},
+{names:'Dorette And Joey Hamra',label:'It's a Girl!',date:'9/16/2026',boy:false},
+{names:'Jaclyn And Albert Djemal',label:'It's a Girl!',date:'9/16/2026',boy:false},
+{names:'Grace And Sammy Ashkenazi',label:'It's a Girl!',date:'9/16/2026',boy:false},
+{names:'Norma And Isaac Antar',label:'It's a Girl!',date:'9/15/2026',boy:false},
+{names:'Claudia And Jack Mamiye',label:'It's a Girl!',date:'9/15/2026',boy:false},
+{names:'Margo And David Ashear',label:'It's a Boy!',date:'9/13/2026',boy:true},
+{names:'Jennifer And Ricky Sasson',label:'It's a Boy!',date:'9/10/2026',boy:true},
+{names:'Donna And Joey Eliau',label:'It's a Boy!',date:'9/10/2026',boy:true},
+{names:'Dubby And Aaron Levy',label:'It's a Boy!',date:'9/10/2026',boy:true},
+{names:'Sarah And Poe Sabz',label:'It's a Girl!',date:'9/10/2026',boy:false},
+{names:'Evi And Elliot Dweck',label:'It's a Boy!',date:'9/8/2026',boy:true},
+{names:'Kimberly And Moshe Dabah',label:'It's a Girl!',date:'9/8/2026',boy:false},
+{names:'Renee And Joey Alfaks',label:'It's a Boy!',date:'9/8/2026',boy:true},
+{names:'Rachel And Joe Nakash',label:'It's a Boy!',date:'9/8/2026',boy:true},
+{names:'Marlowe And Ryan Klaus',label:'It's a Boy!',date:'9/8/2026',boy:true},
+{names:'Regine And Mayer Cohen',label:'It's a Boy!',date:'9/5/2026',boy:true},
+{names:'Caroline And Ikey Shuster',label:'It's a Girl!',date:'9/4/2026',boy:false},
+{names:'Vivian And Bert Robinson',label:'It's a Boy!',date:'9/3/2026',boy:true},
+{names:'Lisa And David Aizer',label:'It's a Girl!',date:'9/3/2026',boy:false},
+{names:'Ronni And Daniel Srour',label:'It's a Girl!',date:'9/2/2026',boy:false},
+{names:'Sara And Ali Cohen',label:'It's a Boy!',date:'9/2/2026',boy:true},
+{names:'Rosette And Teddy Betesh',label:'It's a Boy!',date:'9/2/2026',boy:true},
+{names:'Linda And Marcus Adjmi',label:'It's a Girl!',date:'8/31/2026',boy:false},
+{names:'Barbara And Murray Mizrahi',label:'It's a Girl!',date:'8/29/2026',boy:false},
+{names:'Pamela And Ness Azizo',label:'It's a Boy!',date:'8/28/2026',boy:true},
+{names:'Gaby & Jackie Sutton',label:'It's a Girl!',date:'8/28/2026',boy:false}];
+var i=0;
+function show(){
+  var b=births[i];
+  var c=document.getElementById('card');
+  c.style.opacity=0;
+  setTimeout(function(){
+    document.getElementById('names').textContent=b.names;
+    document.getElementById('label').textContent=b.label;
+    document.getElementById('date').textContent=b.date;
+    c.className=b.boy?'boy':'girl';
+    document.getElementById('counter').textContent=(i+1)+' of '+births.length;
+    c.style.opacity=1;
+  },400);
+  i=(i+1)%births.length;
+}
+show();setInterval(show,5000);
+</script>
 </body>
 </html>
