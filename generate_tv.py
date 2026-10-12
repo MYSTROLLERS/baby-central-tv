@@ -54,12 +54,12 @@ body{{font-family:Arial,Helvetica,sans-serif;background:#fff;color:#333;min-heig
 .header p{{color:#666;font-size:16px;text-align:center;margin-top:6px}}
 .counts{{font-size:22px;font-weight:bold;margin-bottom:20px}}
 .counts .b{{color:#0d6efd}} .counts .g{{color:#d63384}}
-#grid{{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;width:min(1000px,95vw);transition:opacity .5s}}
-.card{{border-radius:14px;padding:25px 15px;text-align:center;box-shadow:0 6px 20px rgba(0,0,0,.1);min-height:160px;display:flex;flex-direction:column;justify-content:center}}
+#grid{{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;width:min(1050px,95vw);transition:opacity .5s}}
+.card{{border-radius:12px;padding:20px 12px;text-align:center;box-shadow:0 6px 20px rgba(0,0,0,.1);min-height:140px;display:flex;flex-direction:column;justify-content:center}}
 .card.boy{{background:#e7f3ff;border:3px solid #0d6efd}}
 .card.girl{{background:#fce4f0;border:3px solid #d63384}}
-.card .names{{font-size:22px;font-weight:bold;margin-bottom:8px}}
-.card .label{{font-size:19px;font-weight:bold}}
+.card .names{{font-size:19px;font-weight:bold;margin-bottom:6px}}
+.card .label{{font-size:16px;font-weight:bold}}
 .card.boy .label{{color:#0d6efd}} .card.girl .label{{color:#d63384}}
 .card .date{{color:#999;font-size:14px;margin-top:8px}}
 #counter{{color:#aaa;font-size:14px;margin-top:20px}}
@@ -78,7 +78,7 @@ body{{font-family:Arial,Helvetica,sans-serif;background:#fff;color:#333;min-heig
 <div class="footer">Showing the {len(recent)} most recent of {len(all_births)} total arrivals &bull; Updated daily</div>
 <script>
 var births=[{js_data}];
-var PER_PAGE=6;
+var PER_PAGE=9;
 var page=0;
 var pages=Math.ceil(births.length/PER_PAGE);
 function show(){{
