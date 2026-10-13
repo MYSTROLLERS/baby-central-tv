@@ -32,21 +32,22 @@ body{font-family:Arial,Helvetica,sans-serif;background:#fff;color:#333;min-heigh
 <div><h1>Baby Central Babies</h1><p>Celebrating the newest arrivals from our Baby Central family.<br>Mazel Tov to all the proud parents!</p></div>
 <img src="https://cdn.shoplightspeed.com/shops/608968/files/77911789/img-7207.jpg" alt="Baby bottle">
 </div>
-<div class="counts"><span class="b">&hearts; 556 Boys</span> &nbsp;|&nbsp; <span class="g">&hearts; 547 Girls</span></div>
+<div class="counts"><span class="b">&hearts; 557 Boys</span> &nbsp;|&nbsp; <span class="g">&hearts; 546 Girls</span></div>
 <div id="grid"></div>
 <div id="counter"></div>
 <div class="footer">Showing the 50 most recent of 1103 total arrivals &bull; Updated daily</div>
 <script>
-var births=[{names:"Sara And Joe Gindi",label:"It\'s a Boy!",date:"10/9/2026",boy:true},
+var births=[{names:"Joyce And Sonny Cayre",label:"It\'s a Boy!",date:"10/13/2026",boy:true},
+{names:"Sara And Joe Gindi",label:"It\'s a Boy!",date:"10/9/2026",boy:true},
 {names:"Raquel & Jack Alboucai",label:"It\'s a Girl!",date:"10/8/2026",boy:false},
 {names:"Claudette And Sol Setton",label:"It\'s a Girl!",date:"10/8/2026",boy:false},
-{names:"Linda And Eddie Lincer",label:"It\'s a Girl!",date:"10/6/2026",boy:false},
 {names:"Norean And Jack Mizrahi",label:"It\'s a Girl!",date:"10/6/2026",boy:false},
+{names:"Linda And Eddie Lincer",label:"It\'s a Girl!",date:"10/6/2026",boy:false},
 {names:"Jenny And Joey Levy",label:"It\'s a Boy!",date:"10/4/2026",boy:true},
-{names:"Caroll And Ovadia Sutton",label:"It\'s a Boy!",date:"9/29/2026",boy:true},
-{names:"Reina And Eddie Levy",label:"It\'s a Girl!",date:"9/29/2026",boy:false},
 {names:"Lauren And Nathan Zalta",label:"It\'s a Girl!",date:"9/29/2026",boy:false},
 {names:"Jasmin And Gabe Abadi",label:"It\'s a Girl!",date:"9/29/2026",boy:false},
+{names:"Reina And Eddie Levy",label:"It\'s a Girl!",date:"9/29/2026",boy:false},
+{names:"Caroll And Ovadia Sutton",label:"It\'s a Boy!",date:"9/29/2026",boy:true},
 {names:"Bobbi And Eli Cattan",label:"It\'s a Boy!",date:"9/28/2026",boy:true},
 {names:"Jaclyn And Jack Hanan",label:"It\'s a Boy!",date:"9/28/2026",boy:true},
 {names:"Esther And Elliot Rishty",label:"It\'s a Boy!",date:"9/28/2026",boy:true},
@@ -55,38 +56,37 @@ var births=[{names:"Sara And Joe Gindi",label:"It\'s a Boy!",date:"10/9/2026",bo
 {names:"Viviane And Joey Cohen",label:"It\'s a Boy!",date:"9/23/2026",boy:true},
 {names:"Lorraine And David Haddad",label:"It\'s a Boy!",date:"9/22/2026",boy:true},
 {names:"Orly And Joe Mamrout",label:"It\'s a Boy!",date:"9/22/2026",boy:true},
+{names:"Rachel And Allie Haber",label:"It\'s a Boy!",date:"9/20/2026",boy:true},
 {names:"Danielle And Tsvi Vilinsky",label:"It\'s a Boy!",date:"9/20/2026",boy:true},
 {names:"Emily And Noah Ohayon",label:"It\'s a Girl!",date:"9/20/2026",boy:false},
-{names:"Rachel And Allie Haber",label:"It\'s a Boy!",date:"9/20/2026",boy:true},
-{names:"Rachel And Louis Shalam",label:"It\'s a Boy!",date:"9/18/2026",boy:true},
 {names:"Eve And Jack Bibi",label:"It\'s a Girl!",date:"9/18/2026",boy:false},
+{names:"Rachel And Louis Shalam",label:"It\'s a Boy!",date:"9/18/2026",boy:true},
 {names:"Erica And Irving Fallas",label:"It\'s a Boy!",date:"9/17/2026",boy:true},
-{names:"Dorette And Joey Hamra",label:"It\'s a Girl!",date:"9/16/2026",boy:false},
 {names:"Jaclyn And Albert Djemal",label:"It\'s a Girl!",date:"9/16/2026",boy:false},
+{names:"Dorette And Joey Hamra",label:"It\'s a Girl!",date:"9/16/2026",boy:false},
 {names:"Grace And Sammy Ashkenazi",label:"It\'s a Girl!",date:"9/16/2026",boy:false},
-{names:"Claudia And Jack Mamiye",label:"It\'s a Girl!",date:"9/15/2026",boy:false},
 {names:"Norma And Isaac Antar",label:"It\'s a Girl!",date:"9/15/2026",boy:false},
+{names:"Claudia And Jack Mamiye",label:"It\'s a Girl!",date:"9/15/2026",boy:false},
 {names:"Margo And David Ashear",label:"It\'s a Boy!",date:"9/13/2026",boy:true},
-{names:"Sarah And Poe Sabz",label:"It\'s a Girl!",date:"9/10/2026",boy:false},
-{names:"Donna And Joey Eliau",label:"It\'s a Boy!",date:"9/10/2026",boy:true},
 {names:"Jennifer And Ricky Sasson",label:"It\'s a Boy!",date:"9/10/2026",boy:true},
 {names:"Dubby And Aaron Levy",label:"It\'s a Boy!",date:"9/10/2026",boy:true},
-{names:"Rachel And Joe Nakash",label:"It\'s a Boy!",date:"9/8/2026",boy:true},
-{names:"Marlowe And Ryan Klaus",label:"It\'s a Boy!",date:"9/8/2026",boy:true},
+{names:"Donna And Joey Eliau",label:"It\'s a Boy!",date:"9/10/2026",boy:true},
+{names:"Sarah And Poe Sabz",label:"It\'s a Girl!",date:"9/10/2026",boy:false},
 {names:"Kimberly And Moshe Dabah",label:"It\'s a Girl!",date:"9/8/2026",boy:false},
-{names:"Evi And Elliot Dweck",label:"It\'s a Boy!",date:"9/8/2026",boy:true},
 {names:"Renee And Joey Alfaks",label:"It\'s a Boy!",date:"9/8/2026",boy:true},
+{names:"Marlowe And Ryan Klaus",label:"It\'s a Boy!",date:"9/8/2026",boy:true},
+{names:"Evi And Elliot Dweck",label:"It\'s a Boy!",date:"9/8/2026",boy:true},
+{names:"Rachel And Joe Nakash",label:"It\'s a Boy!",date:"9/8/2026",boy:true},
 {names:"Regine And Mayer Cohen",label:"It\'s a Boy!",date:"9/5/2026",boy:true},
 {names:"Caroline And Ikey Shuster",label:"It\'s a Girl!",date:"9/4/2026",boy:false},
 {names:"Vivian And Bert Robinson",label:"It\'s a Boy!",date:"9/3/2026",boy:true},
 {names:"Lisa And David Aizer",label:"It\'s a Girl!",date:"9/3/2026",boy:false},
-{names:"Rosette And Teddy Betesh",label:"It\'s a Boy!",date:"9/2/2026",boy:true},
-{names:"Ronni And Daniel Srour",label:"It\'s a Girl!",date:"9/2/2026",boy:false},
 {names:"Sara And Ali Cohen",label:"It\'s a Boy!",date:"9/2/2026",boy:true},
+{names:"Ronni And Daniel Srour",label:"It\'s a Girl!",date:"9/2/2026",boy:false},
+{names:"Rosette And Teddy Betesh",label:"It\'s a Boy!",date:"9/2/2026",boy:true},
 {names:"Linda And Marcus Adjmi",label:"It\'s a Girl!",date:"8/31/2026",boy:false},
 {names:"Barbara And Murray Mizrahi",label:"It\'s a Girl!",date:"8/29/2026",boy:false},
-{names:"Pamela And Ness Azizo",label:"It\'s a Boy!",date:"8/28/2026",boy:true},
-{names:"Gaby & Jackie Sutton",label:"It\'s a Girl!",date:"8/28/2026",boy:false}];
+{names:"Pamela And Ness Azizo",label:"It\'s a Boy!",date:"8/28/2026",boy:true}];
 var PER_PAGE=9;
 var page=0;
 var pages=Math.ceil(births.length/PER_PAGE);
