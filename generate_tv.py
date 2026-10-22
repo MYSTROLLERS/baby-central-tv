@@ -65,6 +65,7 @@ body{{font-family:Arial,Helvetica,sans-serif;background:#fff;color:#333;min-heig
 .header{{display:flex;align-items:center;justify-content:center;gap:30px;margin-bottom:15px}}
 .header img{{height:90px}}
 .header h1{{color:#d63384;font-size:36px;text-align:center}}
+.header .yr{{color:#d63384;font-size:30px;font-weight:bold;text-align:center;letter-spacing:3px}}
 .header p{{color:#666;font-size:16px;text-align:center;margin-top:6px}}
 .counts{{font-size:22px;font-weight:bold;margin-bottom:20px}}
 .counts .b{{color:#4a9fe0}} .counts .g{{color:#e86a9e}}
@@ -83,7 +84,7 @@ body{{font-family:Arial,Helvetica,sans-serif;background:#fff;color:#333;min-heig
 <body>
 <div class="header">
 <img src="{CRIB_URL}" alt="Baby crib">
-<div><h1>Baby Central Babies</h1><p>Celebrating the newest arrivals from our Baby Central family.<br>Mazel Tov to all the proud parents!</p></div>
+<div><div class="yr">{YEAR}</div><h1>Baby Central Babies</h1><p>Celebrating the newest arrivals from our Baby Central family.<br>Mazel Tov to all the proud parents!</p></div>
 <img src="{BOTTLE_URL}" alt="Baby bottle">
 </div>
 <div class="counts"><span class="b">&hearts; {boys} Boys</span> &nbsp;|&nbsp; <span class="g">&hearts; {girls} Girls</span></div>
