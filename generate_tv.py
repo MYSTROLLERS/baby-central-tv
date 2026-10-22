@@ -10,6 +10,8 @@ WORKSPACE = os.path.expanduser("~/workspace/baby-central-babies")
 HIDDEN = os.path.join(WORKSPACE, "hidden_files")
 TV_SITE = os.path.join(WORKSPACE, "tv-site")
 COUNT = 27  # births shown in the rotation (3 pages x 9 per page)
+YEAR = "2026"  # Mike's rule (2026-10-22): the board shows THIS YEAR only.
+               # Counts, rotation and totals all come from births dated YEAR.
 
 CRIB_URL = "https://cdn.shoplightspeed.com/shops/608968/files/77911785/img-7206.jpg"
 BOTTLE_URL = "https://cdn.shoplightspeed.com/shops/608968/files/77911789/img-7207.jpg"
@@ -18,17 +20,21 @@ def main():
     with open(os.path.join(HIDDEN, "all_births.json")) as f:
         all_births = json.load(f)
 
-    # Order by date, newest first (Mike's rule, 2026-10-22). Dated entries
-    # sort ahead of undated ones; same-date entries keep their sheet order.
+    # Scope the board to YEAR only (Mike's rule, 2026-10-22). Only dated
+    # entries can be assigned to a year; undated sheet entries are excluded.
+    scoped = [b for b in all_births if (b['date'] or '').startswith(YEAR)]
+
+    # Order by date, newest first (Mike's rule, 2026-10-22). Same-date
+    # entries keep their sheet order.
     ordered = sorted(
-        enumerate(all_births),
+        enumerate(scoped),
         key=lambda t: (t[1]['date'] or '', -t[0]),
         reverse=True,
     )
     ordered = [b for _, b in ordered]
     recent = ordered[:COUNT]
-    boys = sum(1 for b in all_births if b['gender'] == 'Boy')
-    girls = sum(1 for b in all_births if b['gender'] in ('Girl', 'Twin Girls'))
+    boys = sum(1 for b in scoped if b['gender'] == 'Boy')
+    girls = sum(1 for b in scoped if b['gender'] in ('Girl', 'Twin Girls'))
 
     # Build JS data array - use double quotes for JS strings, escape properly
     js_items = []
@@ -83,7 +89,7 @@ body{{font-family:Arial,Helvetica,sans-serif;background:#fff;color:#333;min-heig
 <div class="counts"><span class="b">&hearts; {boys} Boys</span> &nbsp;|&nbsp; <span class="g">&hearts; {girls} Girls</span></div>
 <div id="grid"></div>
 <div id="counter"></div>
-<div class="footer">Showing the {len(recent)} most recent of {len(all_births)} total arrivals &bull; Updated daily</div>
+<div class="footer">Showing the {len(recent)} most recent of {len(scoped)} total arrivals in {YEAR} &bull; Updated daily</div>
 <script>
 var births=[{js_data}];
 var PER_PAGE=9;
