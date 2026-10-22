@@ -9,7 +9,7 @@ import json, os
 WORKSPACE = os.path.expanduser("~/workspace/baby-central-babies")
 HIDDEN = os.path.join(WORKSPACE, "hidden_files")
 TV_SITE = os.path.join(WORKSPACE, "tv-site")
-COUNT = 50  # births shown in the rotation
+COUNT = 27  # births shown in the rotation (3 pages x 9 per page)
 
 CRIB_URL = "https://cdn.shoplightspeed.com/shops/608968/files/77911785/img-7206.jpg"
 BOTTLE_URL = "https://cdn.shoplightspeed.com/shops/608968/files/77911789/img-7207.jpg"
@@ -18,7 +18,15 @@ def main():
     with open(os.path.join(HIDDEN, "all_births.json")) as f:
         all_births = json.load(f)
 
-    recent = all_births[:COUNT]
+    # Order by date, newest first (Mike's rule, 2026-10-22). Dated entries
+    # sort ahead of undated ones; same-date entries keep their sheet order.
+    ordered = sorted(
+        enumerate(all_births),
+        key=lambda t: (t[1]['date'] or '', -t[0]),
+        reverse=True,
+    )
+    ordered = [b for _, b in ordered]
+    recent = ordered[:COUNT]
     boys = sum(1 for b in all_births if b['gender'] == 'Boy')
     girls = sum(1 for b in all_births if b['gender'] in ('Girl', 'Twin Girls'))
 
