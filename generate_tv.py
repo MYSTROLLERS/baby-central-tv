@@ -57,7 +57,6 @@ def main():
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="refresh" content="86400">
 <title>Baby Central Babies</title>
 <style>
 *{{margin:0;padding:0;box-sizing:border-box}}
@@ -90,7 +89,7 @@ body{{font-family:Arial,Helvetica,sans-serif;background:#fff;color:#333;min-heig
 <div class="counts"><span class="b">&hearts; {boys} Boys</span> &nbsp;|&nbsp; <span class="g">&hearts; {girls} Girls</span></div>
 <div id="grid"></div>
 <div id="counter"></div>
-<div class="footer">Showing the {len(recent)} most recent of {len(scoped)} total arrivals in {YEAR} &bull; Updated daily</div>
+<div class="footer">Showing the {len(recent)} most recent of {len(scoped)} total arrivals in {YEAR} &bull; Updated twice daily</div>
 <script>
 var births=[{js_data}];
 var PER_PAGE=9;
@@ -112,6 +111,7 @@ function show(){{
   page=(page+1)%pages;
 }}
 show();setInterval(show,10000);
+setTimeout(function(){{location.replace(location.pathname+'?v='+Date.now());}},900000);
 </script>
 </body>
 </html>"""

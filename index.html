@@ -3,7 +3,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="refresh" content="86400">
 <title>Baby Central Babies</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -36,7 +35,7 @@ body{font-family:Arial,Helvetica,sans-serif;background:#fff;color:#333;min-heigh
 <div class="counts"><span class="b">&hearts; 150 Boys</span> &nbsp;|&nbsp; <span class="g">&hearts; 161 Girls</span></div>
 <div id="grid"></div>
 <div id="counter"></div>
-<div class="footer">Showing the 27 most recent of 311 total arrivals in 2026 &bull; Updated daily</div>
+<div class="footer">Showing the 27 most recent of 311 total arrivals in 2026 &bull; Updated twice daily</div>
 <script>
 var births=[{names:"Sarah And Freddie Jemal",label:"It\'s a Boy!",date:"10/23/2026",boy:true},
 {names:"Terry And Marco Shacalo",label:"It\'s a Boy!",date:"10/23/2026",boy:true},
@@ -84,6 +83,7 @@ function show(){
   page=(page+1)%pages;
 }
 show();setInterval(show,10000);
+setTimeout(function(){location.replace(location.pathname+'?v='+Date.now());},900000);
 </script>
 </body>
 </html>
