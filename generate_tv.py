@@ -34,7 +34,7 @@ def main():
     ordered = [b for _, b in ordered]
     recent = ordered[:COUNT]
     boys = sum(1 for b in scoped if b['gender'] == 'Boy')
-    girls = sum(1 for b in scoped if b['gender'] in ('Girl', 'Twin Girls'))
+    girls = sum(1 for b in scoped if b['gender'] in ('Girl', 'Twin Girls', 'Twins Boy and Girl'))
 
     # Build JS data array - use double quotes for JS strings, escape properly
     js_items = []
@@ -45,10 +45,18 @@ def main():
             y, m, d = b['date'].split('-')
             date_str = f"{int(m)}/{int(d)}/{y}"
         is_boy = b['gender'] == 'Boy'
-        label = "It's a Boy!" if is_boy else ("Twin Girls!" if b['gender'] == 'Twin Girls' else "It's a Girl!")
+        if b['gender'] == 'Twins Boy and Girl':
+            label = "Twins! Boy & Girl"
+        elif b['gender'] == 'Twin Girls':
+            label = "Twin Girls!"
+        elif is_boy:
+            label = "It's a Boy!"
+        else:
+            label = "It's a Girl!"
+        cls = 'boy' if is_boy else ('twins' if b['gender'] == 'Twins Boy and Girl' else 'girl')
         label = label.replace("'", "\\'")
         js_items.append(
-            f'{{names:"{names}",label:"{label}",date:"{date_str}",boy:{str(is_boy).lower()}}}'
+            f'{{names:"{names}",label:"{label}",date:"{date_str}",boy:{str(is_boy).lower()},cls:"{cls}"}}'
         )
     js_data = ",\n".join(js_items)
 
@@ -72,6 +80,8 @@ body{{font-family:Arial,Helvetica,sans-serif;background:#fff;color:#333;min-heig
 .card{{border-radius:12px;padding:20px 12px;text-align:center;box-shadow:0 6px 20px rgba(0,0,0,.1);min-height:140px;display:flex;flex-direction:column;justify-content:center}}
 .card.boy{{background:#d9ecff;border:3px solid #7cc0ff}}
 .card.girl{{background:#ffe0ec;border:3px solid #ff9ec7}}
+.card.twins{{background:linear-gradient(135deg,#d9ecff 50%,#ffe0ec 50%);border:3px solid #b48ce0}}
+.card.twins .label{{color:#8e5bb5}}
 .card .names{{font-size:19px;font-weight:bold;margin-bottom:6px}}
 .card .label{{font-size:16px;font-weight:bold}}
 .card.boy .label{{color:#4a9fe0}} .card.girl .label{{color:#e86a9e}}
@@ -102,7 +112,7 @@ function show(){{
     var html='';
     for(var k=0;k<PER_PAGE;k++){{
       var b=births[(page*PER_PAGE+k)%births.length];
-      html+='<div class="card '+(b.boy?'boy':'girl')+'"><div class="names">'+b.names+'</div><div class="label">'+b.label+'</div><div class="date">'+b.date+'</div></div>';
+      html+='<div class="card '+(b.cls||(b.boy?'boy':'girl'))+'"><div class="names">'+b.names+'</div><div class="label">'+b.label+'</div><div class="date">'+b.date+'</div></div>';
     }}
     g.innerHTML=html;
     document.getElementById('counter').textContent='Page '+(page+1)+' of '+pages;
